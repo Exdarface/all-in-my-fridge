@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: all-in-my-fridge-app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+      - "9876:9876"
+      - "9229:9229"
+    environment:
+      NODE_ENV: development

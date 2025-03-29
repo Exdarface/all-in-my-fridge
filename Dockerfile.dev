@@ -1,0 +1,24 @@
+FROM node:20
+
+WORKDIR /app
+
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
+
+# Install system dependencies and Chrome explicitly
+RUN apt-get update && apt-get install -y \
+    chromium \
+    dumb-init \
+ && rm -rf /var/lib/apt/lists/*
+
+ENV CHROME_BIN=/usr/bin/chromium
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 4200 9876 9229
+
+# Start concurrently with dev and test scripts
+CMD ["dumb-init", "npm", "run", "dev:test"]
