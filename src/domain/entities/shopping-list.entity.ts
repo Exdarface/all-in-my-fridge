@@ -1,22 +1,22 @@
-import { Fridge } from "./fridge.entity";
-import { Product } from "./product.entity";
+import { Fridge } from './fridge.entity';
+import { Product } from './product.entity';
 
 export class ShoppingList {
   private products: Product[] = [];
 
-  constructor(public readonly fridge: Fridge) {}
+  constructor(public readonly id: string, public readonly fridge: Fridge) {}
 
   addProduct(product: Product): void {
-    const existingProduct = this.products.find(p => p.name === product.name);
+    const existingProduct = this.products.find((p) => p.name === product.name);
     if (existingProduct) {
-      existingProduct.addQuantity(product.quantity.getValue());
+      existingProduct.addQuantity(product.quantity.value);
     } else {
       this.products.push(product);
     }
   }
 
   removeProduct(product: Product, addToFridge: boolean): void {
-    this.products = this.products.filter(p => p.name !== product.name);
+    this.products = this.products.filter((p) => p.name !== product.name);
 
     if (addToFridge) {
       this.fridge.addProduct(product);

@@ -1,4 +1,4 @@
-import { Fridge } from "../entities/fridge.entity";
+import { Fridge } from '../entities/fridge.entity';
 
 export type CreateFridgeResult =
   | { success: true; fridge: Fridge }

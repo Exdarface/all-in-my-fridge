@@ -1,7 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { Fridge } from "../../domain/entities/fridge.entity";
-import { FridgeRepository, CreateFridgeResult, UpdateFridgeResult, RemoveFridgeResult } from "../../domain/repositories/fridge.repository";
+import { Fridge } from '../../../domain/entities/fridge.entity';
+import {
+  FridgeRepository,
+  CreateFridgeResult,
+  UpdateFridgeResult,
+  RemoveFridgeResult,
+} from '../../../domain/repositories/fridge.repository';
 
 export class InMemoryFridgeRepository implements FridgeRepository {
   private readonly fridges: Map<string, Fridge> = new Map();
